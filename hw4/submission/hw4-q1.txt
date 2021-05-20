@@ -1,0 +1,9 @@
+SELECT p1, max(y) as z FROM
+	(SELECT p1,p3,COUNT(*) as y FROM
+		((SELECT * FROM person_living as live, parent_child as child WHERE live.x=child.p1) 
+		AS left
+		JOIN (SELECT p1 AS p3, p2 AS p4 FROM parent_child) AS right
+		ON left.p2 = right.p3) AS lr
+		GROUP BY lr.p1, lr.p3) AS result
+GROUP BY result.p1;
+	

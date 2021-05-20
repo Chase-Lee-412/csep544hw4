@@ -1,0 +1,4 @@
+[ZoneTransfer]
+ZoneId=3
+ReferrerUrl=https://github.com/souffle-lang/souffle/releases/tag/2.0.2
+HostUrl=https://github-releases.githubusercontent.com/53711734/82397100-ff5f-11ea-8749-be98c58120ae?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIWNJYAX4CSVEH53A%2F20210520%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20210520T012741Z&X-Amz-Expires=300&X-Amz-Signature=0bd700e295cc4aae229a60de8c3d1ed16e5ebe1f296b6be0a662cad8d1606540&X-Amz-SignedHeaders=host&actor_id=56667599&key_id=0&repo_id=53711734&response-content-disposition=attachment%3B%20filename%3Dsouffle_2.0.2-1_amd64.deb&response-content-type=application%2Foctet-stream
