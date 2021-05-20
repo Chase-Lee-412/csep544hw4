@@ -33,7 +33,7 @@ p0(x,d) :- parent_child("Priscilla",x), person(x,d).
 .decl p1(x:PersonType,d:DescriptionType)
 .decl t1(x:PersonType)
 
-.output p1(filename="hw4-1.ans")
+.output p1(filename="hw4-q3-1.ans")
 .output p1(IO=stdout)
 
 t1(x) :- parent_child("Priscilla", x).
