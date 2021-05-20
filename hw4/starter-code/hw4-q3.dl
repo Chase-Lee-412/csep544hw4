@@ -28,4 +28,13 @@ p0(x,d) :- parent_child("Priscilla",x), person(x,d).
 //p0(x,d) :- parent_child("Priscilla",x), person(x,d).
 
 
-// Problem
+/************* problem 1 **************/
+.decl p1(x:PersonType,d:DescriptionType)
+.decl t1(x:PersonType)
+
+.output p1(filename="hw4-1.ans")
+.output p1(IO=stdout)
+
+t1(x) :- parent_child("Priscilla", x).
+t1(x) :- parent_child(y, x), t1(y).
+p1(x,d) :- t1(x), person(x,d).
