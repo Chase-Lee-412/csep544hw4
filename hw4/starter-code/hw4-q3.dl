@@ -29,7 +29,7 @@ p0(x,d) :- parent_child("Priscilla",x), person(x,d).
 
 // Problem 1
 
-.decl p1(x:PersonType,y:DescriptionType)
+.decl p1(x:PersonType,d:DescriptionType)
 .decl desc(x:PersonType)
 
 .output p1(filename="hw4-q3-1.ans")
@@ -39,4 +39,74 @@ desc(x) :- parent_child(y, x), desc(y).
 p1(x,d) :- desc(x), person(x,d).
 
 // problem 2
+
+.decl males(x:PersonType, m:number)
+.decl females(x:PersonType, m:number)
+.decl max_m(m:number)
+.decl max_f(m:number)
+.decl female_max(x:PersonType, d:DescriptionType, m:number)
+.decl male_max(x:PersonType, d:DescriptionType, m:number)
+
+
+.decl p2(x:PersonType, d:DescriptionType, m:number)
+
+
+
+.output p2(filename="hw4-q3-2.ans")
+
+males(x,m) :- male(x), m = count: {parent_child(x,_)}.
+females(x,m) :- female(x), m = count: {parent_child(x,_)}.
+
+max_m(m) :- m = max m: {males(_,m)}.
+max_f(m) :- m = max m: {females(_,m)}.
+
+female_max(x,d,m) :- females(x,m), max_f(m), person(x,d).
+male_max(x,d,m) :- males(x,m), max_m(m), person(x,d).
+
+p2(x,d,m) :- female_max(x,d,m).
+p2(x,d,m) :- male_max(x,d,m).
+
+
+// Problem 3
+
+.decl p3(x:PersonType, m1:number, m2:number)
+.decl people(x:PersonType, m:number)
+.decl before_p3(x:PersonType, m1:number, m2:number)
+
+
+.output p3(filename="hw4-q3-3.ans")
+
+people(x,0) :- person(x,_), !parent_child(_, x).
+people(y,m+1) :- people(x,m), parent_child(x,y) .
+before_p3(x,m1,m2) :- person(x,_), m1 = min a: {people(x,a)}, m2 = max b: {people(x,b)}.
+p3(x,m1,m2) :- person_living(x), before_p3(x,m1,m2).
+
+
+// Problem 4
+
+.decl p4(x:PersonType)
+.decl mother_child(m:PersonType, c:PersonType)
+.decl num_live(c:number)
+
+.output p4(filename="hw4-q3-4.ans")
+
+mother_child(m,c) :- female(m), parent_child(m,c), person_living(c).
+mother_child(m,d) :- parent_child(m,c), female(m), mother_child(c,d).
+num_live(c) :- c = count : {person_living(_)}.
+p4(m) :- mother_child(m,_),c = count : {mother_child(m,_)},num_live(c).
+
+
+// Problem 5
+
+.decl p5(x:PersonType)
+.decl minMom(x:PersonType, c:number)
+
+.output p5(filename="hw4-q3-5.ans")
+
+minMom(x,c) :- p4(x), people(x,c).
+p5(x) :- c = min m : {minMom(_,m)}, minMom(x,c).
+
+
+
+
 
